@@ -2,27 +2,80 @@
 <html>
 <head>
     <title>ML Time Series Forecast</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: linear-gradient(135deg,#4facfe,#00f2fe);
+            margin:0;
+            padding:0;
+        }
+
+        .container {
+            width: 500px;
+            margin: 80px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            text-align:center;
+        }
+
+        h2 {
+            margin-bottom:20px;
+        }
+
+        input[type=file] {
+            margin:20px 0;
+        }
+
+        button {
+            background:#4facfe;
+            border:none;
+            padding:10px 20px;
+            color:white;
+            border-radius:6px;
+            cursor:pointer;
+            font-size:16px;
+        }
+
+        button:hover {
+            background:#3a8dde;
+        }
+
+        img {
+            margin-top:20px;
+            width:100%;
+            border-radius:8px;
+        }
+
+        ul {
+            text-align:left;
+        }
+    </style>
 </head>
 <body>
 
-<h2>Upload Time Series CSV</h2>
+<div class="container">
+    <h2>📈 ML Time Series Forecast</h2>
 
-<form method="post" enctype="multipart/form-data">
-    <input type="file" name="file">
-    <button type="submit">Run ML Forecast</button>
-</form>
+    <form method="post" enctype="multipart/form-data">
+        <input type="file" name="file" required>
+        <br>
+        <button type="submit">Run Forecast</button>
+    </form>
 
-{% if result %}
-<h3>Forecast Values:</h3>
-<ul>
-{% for v in result %}
-<li>{{ v }}</li>
-{% endfor %}
-</ul>
+    {% if result %}
+    <h3>Forecast Values</h3>
+    <ul>
+        {% for v in result %}
+        <li>{{ v }}</li>
+        {% endfor %}
+    </ul>
 
-<h3>Forecast Graph:</h3>
-<img src="/static/plot.png" width="500">
-{% endif %}
+    <h3>Forecast Graph</h3>
+    <img src="/static/plot.png">
+    {% endif %}
+</div>
 
 </body>
 </html>
